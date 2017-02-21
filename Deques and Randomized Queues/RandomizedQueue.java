@@ -12,7 +12,7 @@ public class RandomizedQueue<Item> implements Iterable<Item>
     private void resize(int length)
     {
         Item[] copy = (Item[]) new Object[length];
-        for (int i = 0; i < s.length; i++)
+        for (int i = 0; i < N; i++)
         {
             copy[i] = s[i];
         }
@@ -35,7 +35,7 @@ public class RandomizedQueue<Item> implements Iterable<Item>
 
         public Item next()
         {
-            if(!hasNext())
+            if (!hasNext())
                 throw new java.util.NoSuchElementException();
             int position = StdRandom.uniform(i + 1);
             Item thisItem = s[position];
