@@ -27,10 +27,16 @@ public class RandomizedQueue<Item> implements Iterable<Item>
     private class RandomIterator implements Iterator<Item>
     {
         private int i;
+        private Item[] items;
 
         public RandomIterator()
         {
             i = n - 1;
+            items = (Item[]) new Object[s.length];
+            for (int j = 0; j < s.length; j++)
+            {
+                items[j] = s[j];
+            }
         }
 
         public boolean hasNext()
@@ -43,8 +49,8 @@ public class RandomizedQueue<Item> implements Iterable<Item>
             if (!hasNext())
                 throw new java.util.NoSuchElementException();
             int position = StdRandom.uniform(i + 1);
-            Item thisItem = s[position];
-            s[position] = s[i--];
+            Item thisItem = items[position];
+            items[position] = items[i--];
             return thisItem;
         }
 

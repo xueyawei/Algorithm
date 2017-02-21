@@ -1,20 +1,20 @@
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+//import edu.princeton.cs.algs4.In;
+//import edu.princeton.cs.algs4.StdIn;
+//import edu.princeton.cs.algs4.StdOut;
 
 public class Permutation
 {
     public static void main(String[] args)
     {
-        In in = new In(args[1]);
-        In in_k = new In(args[0]);
-        int k = in_k.readInt();
-        RandomizedQueue<String> rQueue = new RandomizedQueue<String>();
-
-        while (!in.isEmpty())
-        {
-            rQueue.enqueue(in.readString());
-        }
+//        In in = new In(args[1]);
+//        In in_k = new In(args[0]);
+//        int k = in_k.readInt();
+//        RandomizedQueue<String> rQueue = new RandomizedQueue<String>();
+//
+//        while (!in.isEmpty())
+//        {
+//            rQueue.enqueue(in.readString());
+//        }
 //        int k = -1;
 //        do
 //        {
@@ -23,10 +23,10 @@ public class Permutation
 //        }
 //        while (k < 0 || k > rQueue.size());
 
-        for (int i = 0; i < k; i++)
-        {
-            StdOut.println(rQueue.dequeue());
-        }
+//        for (int i = 0; i < k; i++)
+//        {
+//            StdOut.println(rQueue.dequeue());
+//        }
 
     }
 }

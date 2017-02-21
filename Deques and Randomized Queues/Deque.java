@@ -22,7 +22,7 @@ public class Deque<Item> implements Iterable<Item>
 
         public Item next()
         {
-            if (currentNode.item == null || !hasNext())
+            if (currentNode == null || !hasNext())
                 throw new java.util.NoSuchElementException();
             Item item = currentNode.item;
             currentNode = currentNode.next;
@@ -120,7 +120,7 @@ public class Deque<Item> implements Iterable<Item>
         Item oldItem = last.item;
         if (sizeOfQueue > 1)
             last.prev.next = null;
-        last = null;
+        last = last.prev;
         if (sizeOfQueue == 1)
             first = null;
         sizeOfQueue--;
