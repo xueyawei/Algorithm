@@ -7,25 +7,30 @@ public class RandomizedQueue<Item> implements Iterable<Item>
 
 
     private Item[] s;
-    private int N = 0;
+    private int n = 0;
+
+    public RandomizedQueue()                 // construct an empty randomized queue
+    {
+        s = (Item[]) new Object[2];
+    }
 
     private void resize(int length)
     {
         Item[] copy = (Item[]) new Object[length];
-        for (int i = 0; i < N; i++)
+        for (int i = 0; i < n; i++)
         {
             copy[i] = s[i];
         }
         s = copy;
     }
 
-    private class randomIterator implements Iterator<Item>
+    private class RandomIterator implements Iterator<Item>
     {
         private int i;
 
-        public randomIterator()
+        public RandomIterator()
         {
-            i = N - 1;
+            i = n - 1;
         }
 
         public boolean hasNext()
@@ -49,28 +54,24 @@ public class RandomizedQueue<Item> implements Iterable<Item>
         }
     }
 
-    public RandomizedQueue()                 // construct an empty randomized queue
-    {
-        s = (Item[]) new Object[2];
-    }
 
     public boolean isEmpty()                 // is the queue empty?
     {
-        return N == 0;
+        return n == 0;
     }
 
     public int size()                        // return the number of items on the queue
     {
-        return N;
+        return n;
     }
 
     public void enqueue(Item item)           // add the item
     {
         if (item == null)
             throw new java.lang.NullPointerException();
-        if (s.length == N)
-            resize(2 * N);
-        s[N++] = item;
+        if (s.length == n)
+            resize(2 * n);
+        s[n++] = item;
 
     }
 
@@ -78,11 +79,11 @@ public class RandomizedQueue<Item> implements Iterable<Item>
     {
         if (isEmpty())
             throw new java.util.NoSuchElementException();
-        int randomPosition = StdRandom.uniform(N);
+        int randomPosition = StdRandom.uniform(n);
         Item dequeueItem = s[randomPosition];
-        s[randomPosition] = s[N - 1];
-        s[N--] = null;
-        if (N > 0 && N == s.length / 4)
+        s[randomPosition] = s[n - 1];
+        s[--n] = null;
+        if (n > 0 && n == s.length / 4)
             resize(s.length / 2);
         return dequeueItem;
     }
@@ -91,12 +92,12 @@ public class RandomizedQueue<Item> implements Iterable<Item>
     {
         if (isEmpty())
             throw new java.util.NoSuchElementException();
-        return s[StdRandom.uniform(N)];
+        return s[StdRandom.uniform(n)];
     }
 
     public Iterator<Item> iterator()         // return an independent iterator over items in random order
     {
-        return new randomIterator();
+        return new RandomIterator();
     }
 
     public static void main(String[] args)   // unit testing (optional)

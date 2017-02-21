@@ -7,11 +7,11 @@ public class Deque<Item> implements Iterable<Item>
 
     private class Node
     {
-        Node next, prev;
-        Item item;
+        public Node next, prev;
+        public Item item;
     }
 
-    private class queIterator implements Iterator<Item>
+    private class QueIterator implements Iterator<Item>
     {
         private Node currentNode = first;
 
@@ -22,7 +22,7 @@ public class Deque<Item> implements Iterable<Item>
 
         public Item next()
         {
-            if (currentNode.item == null)
+            if (currentNode.item == null || !hasNext())
                 throw new java.util.NoSuchElementException();
             Item item = currentNode.item;
             currentNode = currentNode.next;
@@ -107,6 +107,8 @@ public class Deque<Item> implements Iterable<Item>
             throw new java.util.NoSuchElementException();
         Item item = first.item;
         first = first.next;
+        if (sizeOfQueue == 1)
+            last = null;
         sizeOfQueue--;
         return item;
     }
@@ -116,8 +118,11 @@ public class Deque<Item> implements Iterable<Item>
         if (sizeOfQueue == 0)
             throw new java.util.NoSuchElementException();
         Item oldItem = last.item;
-        last.prev.next = null;
+        if (sizeOfQueue > 1)
+            last.prev.next = null;
         last = null;
+        if (sizeOfQueue == 1)
+            first = null;
         sizeOfQueue--;
         return oldItem;
 
@@ -126,7 +131,7 @@ public class Deque<Item> implements Iterable<Item>
 
     public Iterator<Item> iterator()         // return an iterator over items in order from front to end
     {
-        return new queIterator();
+        return new QueIterator();
     }
 
     public static void main(String[] args)   // unit testing (optional)
